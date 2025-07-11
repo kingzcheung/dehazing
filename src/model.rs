@@ -41,6 +41,13 @@ impl DehazeNet {
             e_conv5,
         })
     }
+
+    pub fn with_device(device: &candle_core::Device) -> Result<Self> {
+        let data = include_bytes!("../dehazer.safetensors");
+        let vb = VarBuilder::from_buffered_safetensors(data.to_vec(), DType::F32, device)?;
+
+        Self::new(vb)
+    }
 }
 
 impl Module for DehazeNet {
@@ -53,7 +60,7 @@ impl Module for DehazeNet {
         let concat2 = candle_core::Tensor::cat(&[&x2, &x3], 1)?;
         let x4 = self.e_conv4.forward(&concat2)?.relu()?;
 
-        let concat3 = candle_core::Tensor::cat(&[&x1, &x2,&x3, &x4], 1)?;
+        let concat3 = candle_core::Tensor::cat(&[&x1, &x2, &x3, &x4], 1)?;
         let x5 = self.e_conv5.forward(&concat3)?.relu()?;
 
         let ones = candle_core::Tensor::new(1.0, xs.device())?.to_dtype(DType::F32)?;

@@ -27,9 +27,9 @@ class dehaze_net(nn.Module):
 		concat3 = torch.cat((x1,x2,x3,x4),1)
 		x5 = self.relu(self.e_conv5(concat3))
 
-		clean_image = self.relu((x5 * x) - x5 + 1) 
+		ys = self.relu((x5 * x) - x5 + 1) 
 		
-		return clean_image
+		return ys
 
 		
 
