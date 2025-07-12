@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 authors = ["kingzcheung <kingzcheung@gmail.com>"]
 description = "A simple dehazing algorithm"
-repository = "https://github.com/kingzcheung/dehazing"
+repository = "https://github.com/ximeiorg/dehazing"
 license = "MIT"
 keywords = ["dehazing","image","vision"]
 
