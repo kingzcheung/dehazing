@@ -1,6 +1,6 @@
 [package]
 name = "dehazing"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 authors = ["kingzcheung <kingzcheung@gmail.com>"]
 description = "A simple dehazing algorithm"
